@@ -1,0 +1,14 @@
+name=rabbitmq
+tasks.max=1
+connector.class=com.github.jcustenborder.kafka.connect.rabbitmq.RabbitMQSourceConnector
+rabbitmq.host={{RABBITMQ_HOST}}
+rabbitmq.prefetch.count=500
+rabbitmq.automatic.recovery.enabled=true
+rabbitmq.network.recovery.interval.ms=10000
+rabbitmq.topology.recovery.enabled=true
+rabbitmq.queue={{RABBITMQ_QUEUE}}
+kafka.topic={{KAFKA_TOPIC}}
+rabbitmq.password=
+rabbitmq.username=
+rabbitmq.port=
+rabbitmq.virtual.host=
