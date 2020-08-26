@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-connect-deployment
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: kafka-connect
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-connect
+        version: "1"
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: kafka-connect
+          image: kafka-connect:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: KAFKA_BROKERS
+              value: "abc"
+            - name: KAFKA_TOPIC
+              value: "abc"
+            - name: RABBITMQ_QUEUE
+              value: test.tyaas
+            - name: RABBITMQ_HOST
+              value: pim-dev-rmq.trendyol.com
+            - name: RABBIT_PASSWORD
+              value: "abc"
+            - name: RABBIT_USERNAME
+              value: "abc"
+            - name: RABBIT_PORT
+              value: "5672"
+            - name: RABBIT_VIR_HOST
+              value: "abc"
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+      imagePullSecrets:
+        - name: sfront-registry
+      restartPolicy: Always

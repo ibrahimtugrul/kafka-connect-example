@@ -6,6 +6,16 @@ then run this command 'git config --global core.autocrlf false
 
 Original Project : https://github.com/osterzel/kafka-connect-rabbitmq
 
+# For use in k8 
+
+build image with: docker build -t kafka-connect .
+
+deploy to k8 cluster: kubectl apply -f deployment.yml
+
+NOTE: fill container's environment variable with proper value, set version info if needed, 
+change imagePullPolicy to IfNotPresent from Never if needed.
+
+
 # Source Connectors
 
 ## RabbitMQSourceConnector
