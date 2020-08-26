@@ -1,8 +1,9 @@
 # kafka-connect-example
 
 NOTE: If you use Windows and get Error like "standard_init_linux.go:211: exec user process caused "no such file or directory" kafka connect",
-then run this command 'git config --global core.autocrlf false
-'
+then run this command 'git config --global core.autocrlf false'
+
+To build : mvn clean install
 
 Original Project : https://github.com/osterzel/kafka-connect-rabbitmq
 
